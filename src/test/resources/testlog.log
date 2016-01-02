@@ -1,0 +1,7 @@
+2015-12-29 10:05:57,083 INFO [DOCUMENT_EVENT_LOG] 88568503 ERROR_IN_PROCESSING Recipient connection between customer and recipient not found.
+2015-12-29 10:06:21,374 INFO [DOCUMENT_EVENT_LOG] 88568503 ERROR_IN_PROCESSING Exception raised when calling SMP Lookup server for service Metadata in Peppol Routing
+2015-12-29 10:06:21,446 INFO [DOCUMENT_EVENT_LOG] 88568503 ERROR_IN_PROCESSING Exception raised when calling SMP Lookup server for service Metadata in Peppol Routing
+2015-12-29 10:06:21,446 INFO [DOCUMENT_EVENT_LOG] 88568503 ERROR_IN_PROCESSING No message available. Check stack trace
+2015-12-29 INFO [DOCUMENT_EVENT_LOG] 88568503 ERROR_IN_PROCESSING No message available. Check stack trace
+2015-12-29 10:06:21,446 INFO [DOCUMENT_EVENT_LOG] 88568503 ERROR_IN_PROCESSING Some strange error
+2015-12-29 10:06:21,446 error

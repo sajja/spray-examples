@@ -1,0 +1,46 @@
+<configuration scan="true" scanPeriod="30 seconds" debug="false">
+    <jmxConfigurator/>
+
+    <property name="LOG_PATH" value="${log.path}"/>
+    <property name="LOG_PATH_OLD" value="${LOG_PATH}/old_logs"/>
+    <property name="LOGFILES_TO_KEEP" value="30"/>
+    <property name="LOGFILE_SIZE" value="3KB"/>
+    <property name="DEFAULT_ROLLING_PATTERN" value="%d{yyyy-MM-dd}.log"/>
+    <property name="DEFAULT_ENCODER_PATTERN" value="%date{ISO8601} %level [%logger{32}] %m%n%xEx"/>
+    <property name="SERVICE_NAME" value="statistics-service"/>
+
+    <appender name="DOCUMENT_EVENT_LOG_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${LOG_PATH}/documentevent/documentevent.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${LOG_PATH}/documentevent/archived/documentevent-%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+            <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <maxFileSize>3KB</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+        </rollingPolicy>
+
+        <encoder>
+            <pattern>${DEFAULT_ENCODER_PATTERN}</pattern>
+        </encoder>
+    </appender>
+
+
+    <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${LOG_PATH}/${SERVICE_NAME}.log1</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${LOG_PATH_OLD}/${SERVICE_NAME}.log-${DEFAULT_ROLLING_PATTERN}</fileNamePattern>
+            <maxHistory>${LOGFILES_TO_KEEP}</maxHistory>
+        </rollingPolicy>
+        <encoder>
+            <pattern>${DEFAULT_ENCODER_PATTERN}</pattern>
+        </encoder>
+    </appender>
+
+    <logger name="DOCUMENT_EVENT_LOG" level="INFO" additivity="false">
+        <appender-ref ref="DOCUMENT_EVENT_LOG_FILE"/>
+    </logger>
+
+    <root>
+        <level value="INFO"/>
+        <appender-ref ref="FILE"/>
+    </root>
+</configuration>
